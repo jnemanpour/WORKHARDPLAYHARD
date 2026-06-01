@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Raye &amp; Jay — Our Adventure Calendar</title>
+<meta name="description" content="Raye & Jay's weekly inspiration for fun and enjoyment — upcoming dates, recurring rituals, and weekend escapes." />
+<meta name="theme-color" content="#0d0712" />
+<meta property="og:title" content="Raye & Jay — Our Adventure Calendar" />
+<meta property="og:description" content="Our weekly inspiration for fun & enjoyment. Date nights, rituals, and weekend escapes." />
+<meta property="og:type" content="website" />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💞</text></svg>" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,500;1,9..144,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --bg: #0d0712;
+    --bg-2: #170a20;
+    --ink: #f7eff6;
+    --muted: #b6a3c4;
+    --glass: rgba(255, 255, 255, 0.045);
+    --glass-brd: rgba(255, 255, 255, 0.10);
+    --coral: #ff6a8b;
+    --pink: #ff3d81;
+    --violet: #a86bff;
+    --gold: #ffc46b;
+    --teal: #54e6c8;
+    --grad: linear-gradient(115deg, #ff8a5b 0%, #ff3d81 38%, #a86bff 72%, #6b8bff 100%);
+    --shadow: 0 24px 60px -22px rgba(0, 0, 0, 0.75);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: "Inter", system-ui, sans-serif;
+    color: var(--ink);
+    background: var(--bg);
+    line-height: 1.6;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ---------- animated background ---------- */
+  .bg-wrap { position: fixed; inset: 0; z-index: -2; background: radial-gradient(140% 120% at 50% -10%, var(--bg-2), var(--bg) 60%); }
+  .blob { position: fixed; z-index: -1; border-radius: 50%; filter: blur(90px); opacity: 0.5; will-change: transform; }
+  .blob.a { width: 46vw; height: 46vw; left: -10vw; top: -8vw; background: radial-gradient(circle, #ff3d81, transparent 65%); animation: drift1 22s ease-in-out infinite; }
+  .blob.b { width: 40vw; height: 40vw; right: -8vw; top: 8vw; background: radial-gradient(circle, #a86bff, transparent 65%); animation: drift2 26s ease-in-out infinite; }
+  .blob.c { width: 38vw; height: 38vw; left: 25vw; bottom: -14vw; background: radial-gradient(circle, #ff8a5b, transparent 65%); animation: drift3 30s ease-in-out infinite; }
+  @keyframes drift1 { 0%,100%{transform:translate(0,0) scale(1)} 50%{transform:translate(6vw,4vw) scale(1.12)} }
+  @keyframes drift2 { 0%,100%{transform:translate(0,0) scale(1)} 50%{transform:translate(-5vw,5vw) scale(1.08)} }
+  @keyframes drift3 { 0%,100%{transform:translate(0,0) scale(1)} 50%{transform:translate(-4vw,-5vw) scale(1.14)} }
+
+  /* ---------- nav ---------- */
+  nav {
+    position: sticky; top: 0; z-index: 50;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 16px clamp(18px, 5vw, 64px);
+    backdrop-filter: blur(14px);
+    background: rgba(13, 7, 18, 0.55);
+    border-bottom: 1px solid var(--glass-brd);
+  }
+  .brand { display: flex; align-items: center; gap: 12px; font-family: "Fraunces", serif; font-weight: 600; letter-spacing: .3px; }
+  .monogram {
+    display: grid; place-items: center; width: 40px; height: 40px; border-radius: 50%;
+    background: var(--grad); color: #1a0a16; font-weight: 700; font-size: 15px;
+    box-shadow: 0 6px 20px -6px var(--pink);
+  }
+  .brand b { font-size: 18px; }
+  .nav-tag { color: var(--muted); font-size: 13px; font-family: "Inter"; font-style: italic; }
+  @media (max-width: 620px) { .nav-tag { display: none; } }
+
+  /* ---------- hero ---------- */
+  header.hero { padding: clamp(48px, 9vw, 110px) clamp(18px, 5vw, 64px) clamp(28px, 5vw, 56px); text-align: center; position: relative; }
+  .eyebrow {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 12.5px; letter-spacing: 2.4px; text-transform: uppercase; color: var(--muted);
+    border: 1px solid var(--glass-brd); background: var(--glass);
+    padding: 7px 16px; border-radius: 999px; margin-bottom: 26px;
+  }
+  .eyebrow .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--teal); box-shadow: 0 0 12px var(--teal); }
+  h1 {
+    font-family: "Fraunces", serif; font-weight: 600;
+    font-size: clamp(44px, 9vw, 104px); line-height: 0.98; letter-spacing: -1px;
+  }
+  h1 .amp { font-style: italic; font-weight: 500; background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; padding: 0 .12em; }
+  h1 .names { background: linear-gradient(180deg, #fff, #e7cfe0); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .subtitle { margin: 22px auto 0; max-width: 560px; color: var(--muted); font-size: clamp(15px, 2.2vw, 19px); }
+  .subtitle b { color: var(--ink); font-weight: 600; }
+
+  /* ---------- featured countdown ---------- */
+  .featured {
+    margin: 40px auto 0; max-width: 620px;
+    background: var(--glass); border: 1px solid var(--glass-brd); border-radius: 24px;
+    padding: 26px clamp(20px, 4vw, 38px); box-shadow: var(--shadow);
+    position: relative; overflow: hidden;
+  }
+  .featured::before { content: ""; position: absolute; inset: 0; padding: 1px; border-radius: 24px; background: var(--grad); -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor; mask-composite: exclude; opacity: .55; pointer-events: none; }
+  .featured .lbl { font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: var(--coral); font-weight: 600; }
+  .featured h3 { font-family: "Fraunces", serif; font-weight: 600; font-size: clamp(22px, 4vw, 30px); margin: 8px 0 4px; }
+  .featured .meta { color: var(--muted); font-size: 14px; }
+  .countdown { display: flex; gap: 10px; justify-content: center; margin-top: 20px; }
+  .cd-box { background: rgba(0,0,0,0.28); border: 1px solid var(--glass-brd); border-radius: 14px; padding: 12px 6px; min-width: 70px; }
+  .cd-box .num { font-family: "Fraunces", serif; font-size: clamp(24px, 5vw, 34px); font-weight: 600; font-variant-numeric: tabular-nums; line-height: 1; }
+  .cd-box .unit { font-size: 10.5px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted); margin-top: 6px; }
+
+  /* ---------- controls ---------- */
+  .controls {
+    display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: center;
+    padding: 14px clamp(18px, 5vw, 64px); position: sticky; top: 72px; z-index: 40;
+  }
+  .filter {
+    font: inherit; font-size: 14px; font-weight: 500; cursor: pointer; color: var(--muted);
+    background: var(--glass); border: 1px solid var(--glass-brd); border-radius: 999px;
+    padding: 9px 18px; transition: all .25s ease; display: inline-flex; align-items: center; gap: 7px;
+  }
+  .filter:hover { color: var(--ink); transform: translateY(-1px); border-color: rgba(255,255,255,.25); }
+  .filter.active { color: #1a0a16; background: var(--grad); border-color: transparent; font-weight: 600; box-shadow: 0 8px 22px -10px var(--pink); }
+  .filter .count { font-size: 12px; opacity: .7; }
+  .surprise { margin-left: 4px; background: transparent; border: 1px dashed rgba(255,255,255,.22); color: var(--gold); }
+  .surprise:hover { border-color: var(--gold); color: var(--gold); }
+
+  /* ---------- grid + cards ---------- */
+  main { padding: 18px clamp(18px, 5vw, 64px) 40px; max-width: 1280px; margin: 0 auto; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; }
+  .card {
+    position: relative; background: var(--glass); border: 1px solid var(--glass-brd); border-radius: 22px;
+    padding: 24px; display: flex; flex-direction: column; gap: 12px;
+    transition: transform .3s cubic-bezier(.2,.8,.2,1), border-color .3s, box-shadow .3s;
+    animation: fadeUp .6s both; overflow: hidden;
+  }
+  .card::after { content: ""; position: absolute; inset: 0; border-radius: 22px; padding: 1px; background: var(--card-accent, var(--grad)); -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor; mask-composite: exclude; opacity: 0; transition: opacity .3s; pointer-events: none; }
+  .card:hover { transform: translateY(-6px); box-shadow: var(--shadow); }
+  .card:hover::after { opacity: .7; }
+  .card.flash { animation: flash 1.4s ease; }
+  @keyframes flash { 0%,100%{box-shadow:var(--shadow)} 30%{box-shadow:0 0 0 3px var(--gold), 0 0 40px -4px var(--gold)} }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(22px); } to { opacity: 1; transform: none; } }
+
+  .card-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
+  .emoji { font-size: 34px; line-height: 1; filter: drop-shadow(0 4px 10px rgba(0,0,0,.4)); }
+  .badge { font-size: 11px; letter-spacing: 1.2px; text-transform: uppercase; font-weight: 600; padding: 5px 11px; border-radius: 999px; white-space: nowrap; }
+  .badge.upcoming { color: var(--coral); background: rgba(255,106,139,.13); border: 1px solid rgba(255,106,139,.3); }
+  .badge.recurring { color: var(--teal); background: rgba(84,230,200,.12); border: 1px solid rgba(84,230,200,.3); }
+  .badge.trip { color: var(--violet); background: rgba(168,107,255,.14); border: 1px solid rgba(168,107,255,.3); }
+  .card h3 { font-family: "Fraunces", serif; font-weight: 600; font-size: 21px; line-height: 1.2; }
+  .when { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; font-size: 13.5px; color: var(--muted); }
+  .when .pill { color: var(--ink); background: rgba(0,0,0,.25); border: 1px solid var(--glass-brd); padding: 3px 10px; border-radius: 999px; font-weight: 500; font-variant-numeric: tabular-nums; }
+  .when .pill.soon { color: var(--gold); border-color: rgba(255,196,107,.4); }
+  .loc { font-size: 13px; color: var(--muted); display: flex; align-items: center; gap: 6px; }
+  .desc { font-size: 14.5px; color: #ddcfe0; flex: 1; }
+  .links { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
+  .chip {
+    font-size: 13px; font-weight: 500; text-decoration: none; color: var(--ink);
+    background: rgba(255,255,255,.06); border: 1px solid var(--glass-brd); border-radius: 999px;
+    padding: 7px 14px; transition: all .2s; display: inline-flex; align-items: center; gap: 6px;
+  }
+  .chip:hover { background: var(--grad); color: #1a0a16; border-color: transparent; transform: translateY(-1px); }
+  .tags { display: flex; flex-wrap: wrap; gap: 6px; }
+  .tag { font-size: 11px; color: var(--muted); }
+  .tag::before { content: "#"; opacity: .5; }
+
+  .empty { text-align: center; color: var(--muted); padding: 60px 20px; font-family: "Fraunces", serif; font-size: 20px; font-style: italic; }
+
+  /* ---------- footer ---------- */
+  footer { text-align: center; padding: 50px 20px 70px; color: var(--muted); font-size: 14px; }
+  footer .heart { font-family: "Fraunces", serif; font-style: italic; font-size: 19px; color: var(--ink); margin-bottom: 10px; }
+  footer .hint { max-width: 460px; margin: 14px auto 0; font-size: 13px; opacity: .85; }
+  footer code { background: rgba(255,255,255,.07); border: 1px solid var(--glass-brd); padding: 2px 7px; border-radius: 6px; color: var(--gold); font-size: 12px; }
+
+  @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .001ms !important; animation-iteration-count: 1 !important; } html { scroll-behavior: auto; } }
+</style>
+</head>
+<body>
+<div class="bg-wrap"></div>
+<div class="blob a"></div><div class="blob b"></div><div class="blob c"></div>
+
+<nav>
+  <div class="brand">
+    <span class="monogram">R&amp;J</span>
+    <b>Raye &amp; Jay</b>
+  </div>
+  <span class="nav-tag" id="greeting">our adventure calendar</span>
+</nav>
+
+<header class="hero">
+  <span class="eyebrow"><span class="dot"></span> Weekly inspiration for two</span>
+  <h1><span class="names">Raye</span> <span class="amp">&amp;</span> <span class="names">Jay</span></h1>
+  <p class="subtitle">Our running list of <b>fun &amp; enjoyment</b> — date nights to look forward to, little rituals worth keeping, and weekend escapes waiting to happen.</p>
+
+  <div class="featured" id="featured" hidden>
+    <span class="lbl">⏳ Up next</span>
+    <h3 id="feat-title"></h3>
+    <div class="meta" id="feat-meta"></div>
+    <div class="countdown" id="countdown"></div>
+  </div>
+</header>
+
+<div class="controls" id="controls"></div>
+
+<main>
+  <div class="grid" id="grid"></div>
+  <p class="empty" id="empty" hidden>Nothing here yet — tell me to research a few ideas. ✨</p>
+</main>
+
+<footer>
+  <div class="heart">Here's to never running out of things to look forward to. 🥂</div>
+  <div>Curated with love · <span id="year"></span></div>
+  <p class="hint">Want more? Just tell me — <em>"research rooftop bars near us and add three"</em> or <em>"add our trip to Lisbon"</em> — and new cards land here, live, in minutes via <code>index.html</code>.</p>
+</footer>
+
+<script>
+  /* =========================================================
+     THE CALENDAR DATA  —  add / edit ideas here.
+     category: "upcoming" (has a real date) | "recurring" | "trip"
+     ========================================================= */
+  const events = [
+    // ---------- UPCOMING (dated) ----------
+    { category:"upcoming", emoji:"🌅", title:"Sunrise Hike & Coffee", date:"2026-06-06T05:45:00",
+      location:"A trailhead worth the alarm", accent:"#ff8a5b",
+      desc:"Beat the world awake, watch the sky catch fire, reward ourselves with the best coffee we can find on the way down.",
+      tags:["outdoors","slow morning"],
+      links:[{label:"Find a trail",url:"https://www.alltrails.com"}] },
+
+    { category:"upcoming", emoji:"🍣", title:"Omakase Date Night", date:"2026-06-12T19:00:00",
+      location:"At the counter, please", accent:"#ff6a8b",
+      desc:"Sit where we can watch the chef. No menu, no decisions — just let someone spoil us for a couple of hours.",
+      tags:["dinner","treat yourselves"],
+      links:[{label:"Book on Resy",url:"https://resy.com"},{label:"OpenTable",url:"https://www.opentable.com"}] },
+
+    { category:"upcoming", emoji:"🎨", title:"Pottery for Two", date:"2026-06-18T18:30:00",
+      location:"A studio with aprons", accent:"#ffc46b",
+      desc:"Get our hands messy, make something gloriously lopsided, and keep it forever. Ghost reenactment optional.",
+      tags:["creative","hands-on"],
+      links:[{label:"Find a class",url:"https://www.airbnb.com/s/experiences"}] },
+
+    { category:"upcoming", emoji:"🎷", title:"Live Jazz & Negronis", date:"2026-06-25T20:30:00",
+      location:"Somewhere dim and velvet", accent:"#a86bff",
+      desc:"Low light, slow songs, a bartender who takes bitters seriously. Dress a little better than we need to.",
+      tags:["nightlife","drinks"],
+      links:[{label:"What's on",url:"https://www.eventbrite.com"}] },
+
+    { category:"upcoming", emoji:"🌌", title:"Stargazing Picnic", date:"2026-07-04T21:00:00",
+      location:"Far from the city glow", accent:"#6b8bff",
+      desc:"A blanket, a bottle of something cold, and the whole sky to ourselves. Bonus points for catching a meteor.",
+      tags:["outdoors","romantic"],
+      links:[{label:"Sky tonight",url:"https://www.timeanddate.com/astronomy/"}] },
+
+    // ---------- RECURRING (rituals) ----------
+    { category:"recurring", emoji:"🍸", title:"Friday Cocktail Hour", cadence:"Every Friday · 6pm",
+      location:"Our kitchen, our rules", accent:"#54e6c8",
+      desc:"Our standing reservation with each other. New cocktail every week, phones in the other room, good music loud.",
+      tags:["ritual","drinks"],
+      links:[{label:"This week's recipe",url:"https://www.liquor.com/cocktails"}] },
+
+    { category:"recurring", emoji:"☕", title:"Slow Sunday Mornings", cadence:"Every Sunday",
+      location:"Bed, then maybe brunch", accent:"#54e6c8",
+      desc:"No alarms, no plans. Pastries, the long version of the news, and absolutely nowhere we have to be.",
+      tags:["ritual","cozy"],
+      links:[{label:"Brunch spots",url:"https://www.opentable.com"}] },
+
+    { category:"recurring", emoji:"🌮", title:"Try-Something-New Saturday", cadence:"First Saturday monthly",
+      location:"A part of town we don't know", accent:"#54e6c8",
+      desc:"A cuisine we can't pronounce, a neighborhood we've never walked, or a dare pulled from a hat. No repeats.",
+      tags:["ritual","adventure"],
+      links:[{label:"Find something weird",url:"https://www.atlasobscura.com"}] },
+
+    { category:"recurring", emoji:"🚶", title:"Golden Hour Walk & Talk", cadence:"Wednesday evenings",
+      location:"Wherever the light's good", accent:"#54e6c8",
+      desc:"Phones away, just us and the sunset. The midweek reset where we actually catch up on the big stuff.",
+      tags:["ritual","unplugged"], links:[] },
+
+    // ---------- WEEKEND TRIPS ----------
+    { category:"trip", emoji:"🍷", title:"Wine Country Overnight", when:"A free weekend this summer",
+      location:"Vines & long lunches", accent:"#a86bff",
+      desc:"Tastings until we're pleasantly useless, a slow dinner, and a little inn we don't want to leave in the morning.",
+      tags:["getaway","indulgent"],
+      links:[{label:"Find a stay",url:"https://www.airbnb.com"}] },
+
+    { category:"trip", emoji:"🌲", title:"Coastal Cabin Escape", when:"When we need to disappear",
+      location:"Woodsmoke & ocean fog", accent:"#a86bff",
+      desc:"Zero signal, a fireplace, a stack of books we'll half-read, and walks on a cold beach with hot drinks.",
+      tags:["getaway","unplugged"],
+      links:[{label:"Browse cabins",url:"https://www.hipcamp.com"}] },
+
+    { category:"trip", emoji:"♨️", title:"Hot Springs Weekend", when:"Pick a chilly month",
+      location:"Steam & mountain air", accent:"#a86bff",
+      desc:"Soak, nap, soak again. The entire itinerary is 'get in the water and stay there.'",
+      tags:["getaway","reset"],
+      links:[{label:"Find springs",url:"https://www.atlasobscura.com/things-to-do/hot-springs"}] },
+
+    { category:"trip", emoji:"✈️", title:"Somewhere We've Never Been", when:"The next long weekend",
+      location:"Point at the map. Go.", accent:"#a86bff",
+      desc:"No agenda but each other and a new city. Cheap flights, good walking shoes, and a list of places to eat.",
+      tags:["getaway","spontaneous"],
+      links:[{label:"Chase a fare",url:"https://www.google.com/travel/flights"}] },
+  ];
+
+  /* ===================== rendering ===================== */
+  const LABELS = { all:"✨ Everything", upcoming:"📅 Upcoming", recurring:"🔁 Rituals", trip:"🧳 Weekend Trips" };
+  const grid = document.getElementById("grid");
+  const emptyMsg = document.getElementById("empty");
+  let active = "all";
+
+  const fmtDate = iso => new Date(iso).toLocaleDateString(undefined, { weekday:"short", month:"long", day:"numeric" });
+  const fmtTime = iso => new Date(iso).toLocaleTimeString(undefined, { hour:"numeric", minute:"2-digit" });
+  const daysUntil = iso => Math.ceil((new Date(iso) - new Date()) / 86400000);
+
+  function whenText(ev) {
+    if (ev.category === "upcoming" && ev.date) {
+      const d = daysUntil(ev.date);
+      const soon = d <= 7;
+      const rel = d <= 0 ? "Today" : d === 1 ? "Tomorrow" : `in ${d} days`;
+      return `<span class="pill ${soon ? "soon" : ""}">${rel}</span><span>${fmtDate(ev.date)} · ${fmtTime(ev.date)}</span>`;
+    }
+    if (ev.category === "recurring") return `<span class="pill">${ev.cadence}</span>`;
+    if (ev.category === "trip") return `<span class="pill">${ev.when}</span>`;
+    return "";
+  }
+
+  function cardHTML(ev, i) {
+    const badge = ev.category === "trip" ? "trip" : ev.category;
+    const badgeText = ev.category === "trip" ? "Weekend Trip" : ev.category;
+    const links = (ev.links || []).map(l =>
+      `<a class="chip" href="${l.label && l.url ? l.url : "#"}" target="_blank" rel="noopener noreferrer">${l.label} ↗</a>`).join("");
+    const tags = (ev.tags || []).map(t => `<span class="tag">${t}</span>`).join("");
+    return `<article class="card" style="--card-accent:linear-gradient(120deg, ${ev.accent}, transparent); animation-delay:${i * 55}ms">
+      <div class="card-top">
+        <span class="emoji">${ev.emoji}</span>
+        <span class="badge ${badge}">${badgeText}</span>
+      </div>
+      <h3>${ev.title}</h3>
+      <div class="when">${whenText(ev)}</div>
+      ${ev.location ? `<div class="loc">📍 ${ev.location}</div>` : ""}
+      <p class="desc">${ev.desc}</p>
+      ${links ? `<div class="links">${links}</div>` : ""}
+      ${tags ? `<div class="tags">${tags}</div>` : ""}
+    </article>`;
+  }
+
+  function sortFn(a, b) {
+    // dated upcoming first (soonest), then recurring, then trips — preserving array order otherwise
+    const rank = { upcoming: 0, recurring: 1, trip: 2 };
+    if (rank[a.category] !== rank[b.category]) return rank[a.category] - rank[b.category];
+    if (a.category === "upcoming") return new Date(a.date) - new Date(b.date);
+    return 0;
+  }
+
+  function render() {
+    const list = events.filter(e => active === "all" || e.category === active).sort(sortFn);
+    grid.innerHTML = list.map(cardHTML).join("");
+    emptyMsg.hidden = list.length > 0;
+  }
+
+  /* ===================== filters ===================== */
+  const controls = document.getElementById("controls");
+  function buildControls() {
+    const cats = ["all", "upcoming", "recurring", "trip"];
+    controls.innerHTML = cats.map(c => {
+      const n = c === "all" ? events.length : events.filter(e => e.category === c).length;
+      return `<button class="filter ${c === active ? "active" : ""}" data-cat="${c}">${LABELS[c]} <span class="count">${n}</span></button>`;
+    }).join("") + `<button class="filter surprise" id="surprise">🎲 Surprise us</button>`;
+
+    controls.querySelectorAll(".filter[data-cat]").forEach(btn =>
+      btn.addEventListener("click", () => {
+        active = btn.dataset.cat;
+        controls.querySelectorAll(".filter").forEach(b => b.classList.toggle("active", b === btn));
+        render();
+      }));
+
+    document.getElementById("surprise").addEventListener("click", surprise);
+  }
+
+  function surprise() {
+    active = "all";
+    controls.querySelectorAll(".filter[data-cat]").forEach(b => b.classList.toggle("active", b.dataset.cat === "all"));
+    render();
+    const cards = grid.querySelectorAll(".card");
+    if (!cards.length) return;
+    const pick = cards[Math.floor(Math.random() * cards.length)];
+    pick.scrollIntoView({ behavior: "smooth", block: "center" });
+    pick.classList.remove("flash"); void pick.offsetWidth; pick.classList.add("flash");
+  }
+
+  /* ===================== hero countdown ===================== */
+  function nextUpcoming() {
+    return events
+      .filter(e => e.category === "upcoming" && new Date(e.date) > new Date())
+      .sort((a, b) => new Date(a.date) - new Date(b.date))[0];
+  }
+
+  function tickCountdown() {
+    const ev = nextUpcoming();
+    const box = document.getElementById("featured");
+    if (!ev) { box.hidden = true; return; }
+    box.hidden = false;
+    document.getElementById("feat-title").textContent = `${ev.emoji}  ${ev.title}`;
+    document.getElementById("feat-meta").textContent = `${fmtDate(ev.date)} · ${fmtTime(ev.date)}${ev.location ? " · " + ev.location : ""}`;
+    let diff = Math.max(0, new Date(ev.date) - new Date());
+    const d = Math.floor(diff / 86400000); diff -= d * 86400000;
+    const h = Math.floor(diff / 3600000); diff -= h * 3600000;
+    const m = Math.floor(diff / 60000); diff -= m * 60000;
+    const s = Math.floor(diff / 1000);
+    const units = [["Days", d], ["Hours", h], ["Mins", m], ["Secs", s]];
+    document.getElementById("countdown").innerHTML = units.map(([u, v]) =>
+      `<div class="cd-box"><div class="num">${String(v).padStart(2, "0")}</div><div class="unit">${u}</div></div>`).join("");
+  }
+
+  /* ===================== greeting ===================== */
+  function greet() {
+    const h = new Date().getHours();
+    const g = h < 5 ? "still up, you two? 🌙" : h < 12 ? "good morning, lovebirds ☀️" : h < 17 ? "afternoon, you two ✨" : h < 22 ? "good evening, lovebirds 🌆" : "late night plotting? 🌙";
+    document.getElementById("greeting").textContent = g;
+  }
+
+  /* ===================== init ===================== */
+  document.getElementById("year").textContent = new Date().getFullYear();
+  greet();
+  buildControls();
+  render();
+  tickCountdown();
+  setInterval(tickCountdown, 1000);
+</script>
+<noscript><p style="text-align:center;padding:40px;color:#b6a3c4">This calendar needs JavaScript enabled to sparkle. ✨</p></noscript>
+</body>
+</html>
