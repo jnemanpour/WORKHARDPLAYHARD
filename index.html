@@ -129,7 +129,7 @@
     position: relative; background: var(--glass); border: 1px solid var(--glass-brd); border-radius: 22px;
     padding: 24px; display: flex; flex-direction: column; gap: 12px;
     transition: transform .3s cubic-bezier(.2,.8,.2,1), border-color .3s, box-shadow .3s;
-    animation: fadeUp .6s both; overflow: hidden;
+    animation: fadeUp .6s both; overflow: hidden; cursor: pointer;
   }
   .card::after { content: ""; position: absolute; inset: 0; border-radius: 22px; padding: 1px; background: var(--card-accent, var(--grad)); -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor; mask-composite: exclude; opacity: 0; transition: opacity .3s; pointer-events: none; }
   .card:hover { transform: translateY(-6px); box-shadow: var(--shadow); }
@@ -273,6 +273,18 @@
       links:[{label:"Start at Perch",url:"https://www.perchla.com"}] },
 
     // ---------- WEEKEND TRIPS (escapes from LA) ----------
+    { category:"trip", emoji:"🐪", title:"Morocco Honeymoon", when:"15 days · our honeymoon 💍",
+      location:"Marrakech → Aït Benhaddou → Sahara → Fes → Chefchaouen → Essaouira", accent:"#ff6a8b",
+      desc:"Our 15-day honeymoon: riads and souks in Marrakech, a luxury camp under the Sahara stars with a camel trek, the blue lanes of Chefchaouen, and a couples hammam to finish. The whole map lives in the planner.",
+      tags:["honeymoon","bucket list"],
+      links:[{label:"Open the planner",url:"https://htmlpreview.github.io/?https://github.com/jnemanpour/morocco-honeymoon/blob/main/index.html"},{label:"On GitHub",url:"https://github.com/jnemanpour/morocco-honeymoon"}] },
+
+    { category:"trip", emoji:"🤠", title:"Texas 4th of July Weekend", when:"Jul 2–5, 2026",
+      location:"Fort Worth Stockyards & Dallas", accent:"#ffc46b",
+      desc:"Four days of Texas over the Fourth: the Stockyards Championship Rodeo on Friday night, honky-tonks and barbecue, and Vintage Culture spinning at SILO Dallas on the 4th.",
+      tags:["weekend trip","4th of July"],
+      links:[{label:"Open the planner",url:"https://htmlpreview.github.io/?https://github.com/jnemanpour/texas-weekend/blob/main/index.html"},{label:"On GitHub",url:"https://github.com/jnemanpour/texas-weekend"}] },
+
     { category:"trip", emoji:"🍃", title:"Ojai Pink-Moment Weekend", when:"When we need to exhale",
       location:"Ojai · ~1.5 hrs", accent:"#a86bff",
       desc:"Orange groves, a spa day, and that dreamy 'pink moment' sunset on the Topatopas. The Ojai Valley Inn if we're splurging.",
@@ -426,6 +438,12 @@
   greet();
   buildControls();
   render();
+  // Make the whole card clickable — opens its first link (e.g. the planner) in a new tab.
+  grid.addEventListener("click", (e) => {
+    if (e.target.closest("a")) return;
+    const card = e.target.closest(".card");
+    if (card) { const link = card.querySelector("a.chip"); if (link) window.open(link.href, "_blank", "noopener"); }
+  });
   tickCountdown();
   setInterval(tickCountdown, 1000);
 </script>
